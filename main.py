@@ -1,0 +1,1 @@
+"Archivo de administrador de tareas"
