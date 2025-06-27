@@ -1,7 +1,7 @@
 "Archivo de administrador de tareas"
 
-tareas = []
-completadas = []
+tareas = {}
+
 
 def mostrarMenu():
 
@@ -18,16 +18,15 @@ def verTareas():
 
 def agregarTareas():
     nuevaTarea = input("Escriba la tarea\n")
-    tareas.append(nuevaTarea)
+    tareas[nuevaTarea] = 'pendiente'
 
 def tareasCompletadas():
     tareaCompletada = input("Escriba la tarea completada\n")
-    completadas.append(tareaCompletada)
-    print("Tareas completadas", completadas)
+    tareas[tareaCompletada] = 'Completada'
 
 def eliminarTarea():
     tareaEliminada = input("Escriba la tarea a eliminar\n")
-    tareas.remove(tareaEliminada)
+    del tareas[tareaEliminada]
 
 respuesta = ""
 while respuesta != "5":
