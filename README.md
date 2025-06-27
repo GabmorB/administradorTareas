@@ -1,92 +1,92 @@
 # Administrador de Tareas - Proyecto 1
 
-Este proyecto es parte de una serie de ejercicios para reforzar y profundizar en los conocimientos adquiridos tras completar el libro *Python Crash Course*.
-
 ## ✨ Objetivo
 
-Construir una aplicación de consola que permita gestionar tareas de forma interactiva, integrando buenas prácticas de programación, control de flujo y uso de listas en Python, además de aplicar control de versiones con Git y GitHub.
+Desarrollar una aplicación de consola que administre tareas, usando diccionarios para gestionar el estado (pendiente o completada) de cada tarea, reforzando el uso de estructuras de datos y control de flujo en Python, además de prácticas de control de versiones con Git y GitHub.
 
 ---
 
 ## 📅 Actividades realizadas
 
-### 1. **Inicialización del Proyecto**
+### 1. Inicialización del proyecto
 
-* Definición del objetivo general.
-* Estructura base del programa con funciones y ciclo `while`.
+* Diseño del menú interactivo con `while` e `if`.
+* Separación en funciones: ver, agregar, marcar completada, eliminar.
 
-### 2. **Configuración de Git y GitHub con SSH**
+### 2. Configuración de Git y GitHub con SSH
 
-* Creación de repositorio local con `git init`.
-* Generación y registro de clave SSH.
-* Enlace con repositorio remoto usando:
+* Creación del repositorio local y conexión segura con GitHub.
+* Manejo de llaves SSH y del flujo `git add`, `commit`, `push`, `pull`.
 
-  ```bash
-  git remote add origin git@github.com:GabmorB/administradorTareas.git
-  ```
-* Resolución de errores de autenticación (403, publickey).
+### 3. Migración del manejo de tareas
 
-### 3. **Desarrollo del Menú Interactivo**
-
-* Menú principal con opciones:
-
-  1. Ver tareas
-  2. Agregar tarea
-  3. Marcar como completada
-  4. Eliminar tarea
-  5. Salir
-* Uso de `input()` para interacción.
-* Uso de listas y funciones.
-* Depuración de problema de visualización usando pausa:
+* De listas separadas (`tareas` y `completadas`) a un único **diccionario**:
 
   ```python
-  input("Presiona Enter para continuar...")
+  tareas = {
+    "hacer ejercicio": "pendiente",
+    "leer libro": "Completada"
+  }
   ```
+* Esto permite asociar cada tarea directamente con su estado.
+* Implementación de `del` para eliminar claves y actualización directa para marcar como completada.
 
 ---
 
-## 📃 Conceptos de Python utilizados
+## 🔄 Diagrama de flujo
 
-| Concepto       | Descripción                                  |
-| -------------- | -------------------------------------------- |
-| `while`        | Bucle que mantiene activo el menú            |
-| `input()`      | Entrada del usuario                          |
-| `append()`     | Agregar elementos a una lista                |
-| `if/elif/else` | Control de flujo según selección del usuario |
-| `print()`      | Salida en consola                            |
-| `def`          | Declaración de funciones                     |
-
-## 🚀 Conceptos de Git/GitHub trabajados
-
-| Comando                   | Propósito                                          |
-| ------------------------- | -------------------------------------------------- |
-| `git init`                | Inicializa repositorio local                       |
-| `git add .`               | Agrega archivos al área de staging                 |
-| `git commit -m "mensaje"` | Crea un snapshot del estado actual del proyecto    |
-| `git remote add origin`   | Enlaza el repo local con GitHub                    |
-| `git push -u origin main` | Sube los cambios a GitHub                          |
-| `ssh-keygen`              | Genera clave SSH                                   |
-| `ssh-add`                 | Agrega la clave privada al agente de autenticación |
-| `git pull`                | Trae cambios del repositorio remoto                |
+```mermaid
+graph TD
+    A[Inicio] --> B[Mostrar menú]
+    B --> C[Input opción]
+    C --> |1| D[Ver tareas]
+    C --> |2| E[Agregar tarea]
+    C --> |3| F[Marcar como completada]
+    C --> |4| G[Eliminar tarea]
+    C --> |5| H[Salir]
+    D --> B
+    E --> B
+    F --> B
+    G --> B
+```
 
 ---
 
-## 📆 Estado actual
+## 📝 Conceptos principales
 
-* [x] Proyecto iniciado
-* [x] Git y GitHub configurados correctamente con SSH
-* [x] Menú funcional para ver y agregar tareas
-* [ ] Marcar tareas como completadas
-* [ ] Eliminar tareas
-* [ ] Mejoras en la presentación de la consola
+### Python
+
+| Concepto            | Uso en el proyecto                       |
+| ------------------- | ---------------------------------------- |
+| Diccionarios        | Para asociar tarea → estado              |
+| `append` / `remove` | (inicialmente con listas, luego migrado) |
+| `del`               | Para eliminar entradas del diccionario   |
+| `input`, `print`    | Interacción por consola                  |
+| `while`, `if`       | Flujo de control del menú                |
+| Funciones           | Separación lógica de las acciones        |
+
+### Git / GitHub
+
+| Comando                 | Función                         |
+| ----------------------- | ------------------------------- |
+| `git init`              | Crear repo local                |
+| `git add .`             | Preparar cambios                |
+| `git commit -m`         | Guardar snapshot del proyecto   |
+| `git push`, `git pull`  | Sincronizar con GitHub          |
+| `ssh-keygen`, `ssh-add` | Autenticación segura con GitHub |
 
 ---
 
-## 🙌 Próximos pasos
+## ✅ Estado actual
 
-* Implementar las opciones 3 y 4 del menú.
-* Guardar las tareas en un archivo de texto o JSON.
-* Refactorizar para separar lógica en módulos.
-* Escribir pruebas básicas.
+*
 
-"Agrego resumen del proyecto"
+---
+
+## 🚀 Próximos pasos
+
+* Mejorar presentación en consola (por ejemplo, con emojis ✅ ⏳).
+* Guardar y cargar el estado de las tareas desde un archivo.
+* Refactorizar el código para que sea más modular y escalable.
+* Agregar pequeños tests automáticos para validar el flujo.
+
