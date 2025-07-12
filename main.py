@@ -1,6 +1,13 @@
 "Archivo de administrador de tareas"
 
+import json
+
+ 
+
 tareas = {}
+
+with open('salida.json', 'r') as j:
+    tareas = json.load(j)  
 
 
 def mostrarMenu():
@@ -11,7 +18,8 @@ def mostrarMenu():
     "2. Agregar nueva tarea\n" \
     "3. Marcar tarea como completada\n" \
     "4. Eliminar tarea\n" \
-    "5. Salir")
+    '5. Guardar actividad\n' \
+    "6. Salir")
 
 def verTareas():
     print(tareas)
@@ -28,8 +36,12 @@ def eliminarTarea():
     tareaEliminada = input("Escriba la tarea a eliminar\n")
     del tareas[tareaEliminada]
 
+def guardarActividad():
+    with open('salida.json', 'w') as f:
+        json.dump(tareas, f, indent=4)
+
 respuesta = ""
-while respuesta != "5":
+while respuesta != "6":
 
     mostrarMenu()
 
@@ -49,3 +61,6 @@ while respuesta != "5":
     elif respuesta == "4":
         eliminarTarea()
         verTareas()
+
+    elif respuesta == "5":
+        guardarActividad()
