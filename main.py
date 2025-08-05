@@ -1,13 +1,15 @@
 "Archivo de administrador de tareas"
 
 import json
-
- 
+import os
 
 tareas = {}
-
-with open('salida.json', 'r') as j:
-    tareas = json.load(j)  
+if os.path.exists('salida.json'):
+    try:
+        with open('salida.json', 'r') as j:
+            tareas = json.load(j)
+    except json.JSONDecodeError:
+        print("Advertencia: el archivo está vacío o corrupto. Se iniciará con tareas vacías.")
 
 
 def mostrarMenu():
@@ -59,7 +61,12 @@ while respuesta != "6":
         tareasCompletadas()
 
     elif respuesta == "4":
-        eliminarTarea()
+        respuesta = input('¿Desea eliminar esta actividad? (s/n)')
+        respuesta_min = respuesta.lower()
+        if respuesta_min == 's':
+            eliminarTarea()
+        else:
+            continue
         verTareas()
 
     elif respuesta == "5":
